@@ -6,7 +6,7 @@ const PatientDao = require('./modules/patientDao');
 class Server {
     constructor(port, origin) {
         this.port = port;
-        this.origin = origin ?? "*";
+        this.origin = origin || "*";
         this.dao = new PatientDao();
     }
 
@@ -29,9 +29,6 @@ class Server {
                 break;
             case "POST":
                 await this.handlePost(req, res)
-                break;
-            case "DELETE":
-                await this.dao.deleteTable() //todo DELETE THIS
                 break;
             default:
                 res.writeHead(405, { 'Allow': 'GET, POST' });
